@@ -1,0 +1,20 @@
+Remove Duplicates Sorted Array
+
+class Solution {
+    ArrayList<Integer> removeDuplicates(int[] arr) {
+        ArrayList<Integer> result = new ArrayList<>();
+
+        int i = 0;
+        result.add(arr[i]);   // first element is always unique
+
+        for (int j = 1; j < arr.length; j++) {
+            if (arr[j] != arr[i]) {
+                i++;                // same logic as yours
+                arr[i] = arr[j];    // move unique forward
+                result.add(arr[i]); // collect result
+            }
+        }
+
+        return result;
+    }
+}
