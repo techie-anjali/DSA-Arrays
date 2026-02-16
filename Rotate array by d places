@@ -1,0 +1,27 @@
+Rotate Array by d places [left rotation]
+Given an array arr[]. Rotate the array to the left (counter-clockwise direction) by d steps, where d is a positive integer. Do the mentioned change in the array in place.
+
+class Solution {
+    static void rotateArr(int arr[], int d) {
+        
+        int n = arr.length;
+        d = d % n;   // handle d > n
+        
+        int temp[] = new int[d];
+        
+        // Step 1: Store first d elements
+        for(int i = 0; i < d; i++){
+            temp[i] = arr[i];
+        }
+        
+        // Step 2: Shift remaining elements left
+        for(int i = d; i < n; i++){
+            arr[i - d] = arr[i];
+        }
+        
+        // Step 3: Copy temp elements at end
+        for(int i = n - d; i < n; i++){
+            arr[i] = temp[i - (n - d)];
+        }
+    }
+}
