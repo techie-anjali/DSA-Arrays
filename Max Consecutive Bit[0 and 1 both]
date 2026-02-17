@@ -1,0 +1,21 @@
+Given an array arr[] consisting of only 0’s and 1’s, return count of the maximum number of consecutive 1’s or 0’s present in the array. 
+class Solution {
+    public int maxConsecBits(int[] arr) {
+        
+        int maxCount = 1;   // since array size ≥ 1
+        int count = 1;
+
+        for(int i = 1; i < arr.length; i++){
+            
+            if(arr[i] == arr[i - 1]) {
+                count++;
+            } else {
+                count = 1;
+            }
+
+            maxCount = Math.max(maxCount, count);
+        }
+
+        return maxCount;
+    }
+}
