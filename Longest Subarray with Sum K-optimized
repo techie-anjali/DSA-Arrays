@@ -1,0 +1,36 @@
+import java.util.HashMap;
+
+class Solution {
+    public int longestSubarray(int[] arr, int k) {
+        
+        HashMap<Long, Integer> preSumMap = new HashMap<>();
+        
+        int maxLen = 0;
+        long sum = 0;   // use long to avoid overflow
+        
+        for(int i = 0; i < arr.length; i++) {
+            
+            sum += arr[i];
+            
+            // Case 1: if sum itself equals k
+            if(sum == k) {
+                maxLen = i + 1;
+            }
+            
+            long rem = sum - k;
+            
+            // Case 2: if remaining sum found before
+            if(preSumMap.containsKey(rem)) {
+                int len = i - preSumMap.get(rem);
+                maxLen = Math.max(maxLen, len);
+            }
+            
+            // Store first occurrence of prefix sum
+            if(!preSumMap.containsKey(sum)) {
+                preSumMap.put(sum, i);
+            }
+        }
+        
+        return maxLen;
+    }
+}
